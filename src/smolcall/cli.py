@@ -64,3 +64,47 @@ def eval_cmd(
                 f"multi={(m['multi_accuracy']['value'] or 0):.3f}  "
                 f"false_call={(m['false_call_rate']['value'] or 0):.3f}"
             )
+
+
+@app.command("bench")
+def bench_cmd(
+    system: list[str] = typer.Option(..., "--system", "-s"),
+    n: int = typer.Option(40, help="Measured requests (after 3 warmup requests)"),
+) -> None:
+    """Single-request latency, tokens/sec, peak memory and disk size of local models."""
+    from smolcall.eval.bench import bench
+
+    for s in system:
+        typer.echo(json.dumps(bench(s, n), indent=2))
+
+
+@app.command("predict")
+def predict_cmd(
+    query: str = typer.Argument(..., help="The user request"),
+    tools: str = typer.Option("examples/tools.json", help="JSON file with a list of tool schemas"),
+    model: str = typer.Option("models/smolcall-4bit", help="Model directory or HF repo"),
+    adapter: str | None = typer.Option(None, help="Optional LoRA adapter directory"),
+    raw: bool = typer.Option(False, help="Also print the raw model output"),
+) -> None:
+    """Predict the tool calls for one request."""
+    from pathlib import Path
+
+    from smolcall.predict import load_tools, predict
+
+    calls, text = predict(query, load_tools(Path(tools)), model, adapter)
+    if raw:
+        typer.echo(f"raw: {text}")
+    typer.echo(json.dumps(calls, indent=2, ensure_ascii=False))
+
+
+@app.command("prompt")
+def prompt_cmd(
+    tools: str = typer.Option("examples/tools.json", help="JSON file with a list of tool schemas"),
+) -> None:
+    """Print the system prompt for these tools (for use with mlx_lm.server or any client)."""
+    from pathlib import Path
+
+    from smolcall.predict import load_tools
+    from smolcall.prompt import system_prompt
+
+    typer.echo(system_prompt(load_tools(Path(tools))))

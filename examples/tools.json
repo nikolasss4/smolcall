@@ -1,0 +1,27 @@
+[
+  {
+    "name": "get_weather",
+    "description": "Current weather for a city.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "city": {"type": "string", "description": "City name"},
+        "units": {"type": "string", "enum": ["celsius", "fahrenheit"], "default": "celsius"}
+      },
+      "required": ["city"]
+    }
+  },
+  {
+    "name": "convert_currency",
+    "description": "Convert an amount between two currencies.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "amount": {"type": "number"},
+        "from_currency": {"type": "string", "description": "ISO code, e.g. USD"},
+        "to_currency": {"type": "string", "description": "ISO code, e.g. EUR"}
+      },
+      "required": ["amount", "from_currency", "to_currency"]
+    }
+  }
+]
