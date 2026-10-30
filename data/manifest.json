@@ -1,0 +1,42 @@
+{
+  "sources": [
+    {
+      "name": "glaive",
+      "repo": "glaiveai/glaive-function-calling-v2",
+      "revision": "e7f4b6456019f5d8bcb991ef0dd67d8ff23221ac",
+      "license": "apache-2.0",
+      "use": "train/val/test",
+      "files": {
+        "glaive-function-calling-v2.json": "e9b5d671812b5ca2fbd7b625a37d5c99a19576c37252cdc806defe256aea6dad"
+      }
+    },
+    {
+      "name": "hermes",
+      "repo": "NousResearch/hermes-function-calling-v1",
+      "revision": "dae3e1d28cfbcf4b915c04ea1e072030529b4bda",
+      "license": "apache-2.0",
+      "use": "train/val/test",
+      "files": {
+        "func-calling-singleturn.json": "fb2df9fe3f295dfd65b223c2dbf04d6b90006357d737f8f8927749f0bea09527"
+      }
+    },
+    {
+      "name": "bfcl",
+      "repo": "gorilla-llm/Berkeley-Function-Calling-Leaderboard",
+      "revision": "61fc0608cfd831fcfbbaa676ebdfef0ed963eeda",
+      "license": "apache-2.0",
+      "use": "eval only",
+      "files": {
+        "BFCL_v3_simple.json": "fbc37b2ad252bf9af985582e0e07b456173fe627d957491472ea9cef5fb83158",
+        "possible_answer/BFCL_v3_simple.json": "2911a2bc00df82c4f999ffa64fedb0164cb88e96212ffa5972087eb91fd496ee",
+        "BFCL_v3_multiple.json": "aef168155ebd74b7ac2401198b201343bc7d16d7a3d7e0d4e6d8ee82c6969b2a",
+        "possible_answer/BFCL_v3_multiple.json": "244e00ce9395df948bcafc7bee64e8f9c87ef70887587d83cae45b13699f3047",
+        "BFCL_v3_parallel.json": "fad375d68295776efb63e5aa331dd884f8635e7bb50e05908113c74f14281c3c",
+        "possible_answer/BFCL_v3_parallel.json": "3af54bf04e5b7640b03a9b6a82440f52474feb24b398f94435fd2b155c7727de",
+        "BFCL_v3_parallel_multiple.json": "8863ea8433239f55c5f016154cf0830853c89f693c6ea270396a2fa121960579",
+        "possible_answer/BFCL_v3_parallel_multiple.json": "df4d2c16238c1465dc04697c273cf3ab4a450075fcd274e3dc86ad5bf0049b75",
+        "BFCL_v3_irrelevance.json": "975f51c51f688649fd190078efd87081241e0a326f9114a2ea3c1ca2440d8690"
+      }
+    }
+  ]
+}
