@@ -1,0 +1,18 @@
+# LoRA rank 64 on 1500 examples (rank 16 is n1500.yaml).
+model: ibm-granite/granite-4.1-3b
+seed: 0
+epochs: 1
+train_size: 1500
+batch_size: 2
+grad_accumulation_steps: 2
+num_layers: -1
+learning_rate: 1.0e-4
+cosine_warmup: 50
+lora_parameters: {rank: 64, dropout: 0.0, scale: 2.0}
+mask_prompt: true
+max_seq_length: 2048
+grad_checkpoint: true
+steps_per_report: 20
+steps_per_eval: 100
+val_batches: 25
+save_every: 200
