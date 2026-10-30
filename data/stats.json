@@ -1,0 +1,60 @@
+{
+  "parsed": 79435,
+  "splits": {
+    "bfcl": {
+      "categories": {
+        "multi": 120,
+        "none": 60,
+        "single": 120
+      },
+      "distinct_tools": 397,
+      "n": 300,
+      "sha256": "3c977867eeb4dd0b6e49487d00d7ef7ee01b9c5754011e0d5b09891d8ff94493",
+      "sources": {
+        "bfcl": 300
+      }
+    },
+    "test": {
+      "categories": {
+        "multi": 174,
+        "none": 65,
+        "single": 261
+      },
+      "distinct_tools": 912,
+      "n": 500,
+      "sha256": "1849d347eb6764179ec2f9b2d1b8d493698ed3c9e4fb100d04019c317065d149",
+      "sources": {
+        "glaive": 185,
+        "hermes": 315
+      }
+    },
+    "train": {
+      "categories": {
+        "multi": 338,
+        "none": 1553,
+        "single": 4478
+      },
+      "distinct_tools": 2005,
+      "n": 6369,
+      "sha256": "c99706fcf2743c2a6f23fa6e834b582747d91285c0bb24399d7b4dde109c33c5",
+      "sources": {
+        "glaive": 5777,
+        "hermes": 592
+      }
+    },
+    "val": {
+      "categories": {
+        "multi": 15,
+        "none": 66,
+        "single": 219
+      },
+      "distinct_tools": 191,
+      "n": 300,
+      "sha256": "0cff9c2e1f295a459075e5b358635f17d8b6f1a4bd7a91f47a44d7e33b8b25ca",
+      "sources": {
+        "glaive": 277,
+        "hermes": 23
+      }
+    }
+  }
+}
