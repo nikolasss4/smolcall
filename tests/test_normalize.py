@@ -164,3 +164,15 @@ def test_glaive_rejects_empty_string_argument_values() -> None:
         '"arguments": \'{"base": ""}\'} <|endoftext|>\n'
     )
     assert parse_glaive({"system": GLAIVE_SYSTEM, "chat": chat}, 6) is None
+
+
+def test_bfcl_answer_without_namespace_maps_to_offered_tool() -> None:
+    q = {
+        "id": "simple_363",
+        "question": [[{"role": "user", "content": "sushi in Boston"}]],
+        "function": [{"name": "restaurant_search.find_closest", "parameters": {"type": "dict"}}],
+    }
+    answer = {"id": "simple_363", "ground_truth": [{"find_closest": {"location": ["Boston"]}}]}
+    ex = parse_bfcl(q, answer, "simple")
+    assert ex.accept == [{"restaurant_search.find_closest": {"location": ["Boston"]}}]
+    assert ex.calls[0].name == "restaurant_search.find_closest"

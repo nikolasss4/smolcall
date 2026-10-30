@@ -138,8 +138,16 @@ def build() -> dict[str, Any]:
     splits["bfcl"] = bfcl
 
     problems = check_leakage(splits, heldout=("test", "bfcl"))
+    for name, exs in splits.items():
+        for e in exs:
+            offered = set(e.tool_names)
+            problems += [
+                f"{e.id} in {name}: gold calls {c.name!r}, which is not offered"
+                for c in e.calls
+                if c.name not in offered
+            ]
     if problems:
-        raise SystemExit("leakage:\n" + "\n".join(problems[:20]))
+        raise SystemExit("data problems:\n" + "\n".join(problems[:20]))
 
     stats: dict[str, Any] = {"parsed": len(examples), "splits": {}}
     for name, exs in splits.items():

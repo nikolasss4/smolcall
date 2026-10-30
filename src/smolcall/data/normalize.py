@@ -168,6 +168,15 @@ def parse_hermes(row: dict[str, Any]) -> Example | None:
 # --- Berkeley Function-Calling Leaderboard (eval only) ---------------------------------
 
 
+def _bfcl_name(name: str, offered: set[str]) -> str:
+    """A few BFCL answers drop the namespace (``find_closest`` for the offered
+    ``restaurant_search.find_closest``); map them to the one offered tool they name."""
+    if name in offered:
+        return name
+    matches = [n for n in offered if n.endswith("." + name)]
+    return matches[0] if len(matches) == 1 else name
+
+
 def parse_bfcl(question: dict[str, Any], answer: dict[str, Any] | None, category: str) -> Example:
     turn = question["question"][0]
     query = next(m["content"] for m in reversed(turn) if m["role"] == "user")
@@ -176,6 +185,8 @@ def parse_bfcl(question: dict[str, Any], answer: dict[str, Any] | None, category
         for f in question["function"]
     ]
     accept: list[dict[str, dict[str, list[Any]]]] = answer["ground_truth"] if answer else []
+    names = {t["name"] for t in tools}
+    accept = [{_bfcl_name(n, names): alts for n, alts in g.items()} for g in accept]
     calls = []
     for gold in accept:
         ((name, alts),) = gold.items()
