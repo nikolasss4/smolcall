@@ -11,9 +11,10 @@ dist/
 !.env.example
 .DS_Store
 
-# downloaded data and built splits are reproducible from data/manifest.json
+# downloaded data and the train/val splits are rebuilt by `make data`; test splits are committed for re-scoring
 data/raw/
-data/processed/
+data/processed/train.jsonl
+data/processed/val.jsonl
 # weights are large; adapters are published separately
 models/
 runs/*/adapters/
