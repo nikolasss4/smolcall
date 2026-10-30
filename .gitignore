@@ -18,3 +18,4 @@ data/processed/
 models/
 runs/*/adapters/
 runs/*/fused*/
+logs/

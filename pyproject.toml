@@ -52,3 +52,13 @@ packages = ["smolcall"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["typer.Option", "typer.Argument"]
+
+# MLX is only installed on Apple Silicon; treat it as untyped everywhere so local and
+# Linux CI type-check the same way.
+[[tool.mypy.overrides]]
+module = ["mlx", "mlx.*", "mlx_lm", "mlx_lm.*", "anthropic", "anthropic.*"]
+follow_imports = "skip"
+follow_untyped_imports = false
