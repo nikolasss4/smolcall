@@ -19,3 +19,6 @@ models/
 runs/*/adapters/
 runs/*/fused*/
 logs/
+runs/*/adapters/
+runs/*/data/
+runs/smoke/

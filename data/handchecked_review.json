@@ -1,0 +1,272 @@
+{
+  "reviewed": 150,
+  "reasons": {
+    "invented": "gold contains an argument value the user never gave",
+    "ambiguous": "several answers are reasonable (format, units, ticker vs. name) and the gold picks one",
+    "structure": "gold invents a nested structure or keys the schema does not define",
+    "incomplete": "gold leaves out a call the user asked for and gave every argument for",
+    "stringified": "gold is a re-serialized JSON string no model could reproduce exactly"
+  },
+  "dropped": [
+    {
+      "id": "hermes-b2ad738e-0d6c-43f6-ae14-a162fe43a8d4",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-eef0a57d-d50d-4428-be97-17c8c7808604",
+      "reason": "incomplete"
+    },
+    {
+      "id": "hermes-cd287cad-6436-4527-8629-bd2c0ea49779",
+      "reason": "invented"
+    },
+    {
+      "id": "glaive-310",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-739caa28-bb48-4cc0-b879-bbc9463af369",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-c6093d66-768d-49dd-99c4-29c8ff6653c9",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-6c053139-6441-46a5-82d0-00ff0b756741",
+      "reason": "structure"
+    },
+    {
+      "id": "glaive-83194",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "glaive-50589",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-db88c00f-6268-4076-a571-12a9fae8006a",
+      "reason": "incomplete"
+    },
+    {
+      "id": "glaive-89066",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-7d99abac-f27f-4ed2-a9ea-31faab5ad5e8",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "glaive-56175",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-ce908fd9-8062-425a-88a8-5e8a79c852df",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-f483803c-070d-4380-b876-6ed6e43872ed",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-27317c70-1049-4055-956d-059cef17760a",
+      "reason": "invented"
+    },
+    {
+      "id": "glaive-90045",
+      "reason": "structure"
+    },
+    {
+      "id": "glaive-75191",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-2863f202-294b-489e-8452-fcc103c294bb",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-9e0434a3-80ef-4646-aaff-136063685830",
+      "reason": "structure"
+    },
+    {
+      "id": "glaive-61916",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-e4de4781-56d4-416d-b266-57c7fcf1bc99",
+      "reason": "structure"
+    },
+    {
+      "id": "glaive-108024",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-3ed8e87c-0dfe-42fc-9aab-456a7a6e903c",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-1dd91600-952a-4b97-ba56-eb4db1db858d",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-85524420-f062-4c33-b41c-fe58ec183ed5",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-145d47a9-7301-43f7-9487-12549be522c4",
+      "reason": "structure"
+    },
+    {
+      "id": "hermes-697351e0-3274-4aa7-b6a4-7329bb871324",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-fb57d66c-821d-47e0-89d7-5988721f6895",
+      "reason": "stringified"
+    },
+    {
+      "id": "hermes-c1714874-1e2a-45b5-bf5e-e55306046abc",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-a67a8579-21eb-4945-a11a-45ec9c4bd902",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-86253244-3ae3-4ddb-950e-3c888d45486f",
+      "reason": "stringified"
+    },
+    {
+      "id": "hermes-d018e2c8-0a01-4124-9c01-f5d9197873fb",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-c7f14509-b08f-40df-91b0-724ad4ee50d0",
+      "reason": "structure"
+    },
+    {
+      "id": "hermes-ae501e62-7a6b-436b-a0c8-ad353d82f97c",
+      "reason": "incomplete"
+    },
+    {
+      "id": "hermes-f313b976-c9f9-4e67-9fb7-f51cd2cc2d62",
+      "reason": "structure"
+    },
+    {
+      "id": "hermes-9a18971a-f795-486c-a676-3c438923f180",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "hermes-f43b5023-cf54-4c91-aa90-bf15bcc7ed02",
+      "reason": "incomplete"
+    },
+    {
+      "id": "hermes-6ee8e53b-8934-47e7-8c86-ab301eb52995",
+      "reason": "structure"
+    },
+    {
+      "id": "hermes-8753af14-10cd-4450-bb06-84a0ddd441ae",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-13d64a90-9f09-4b22-bba4-1b4bff250fa3",
+      "reason": "invented"
+    },
+    {
+      "id": "hermes-6a80720d-3d9d-4aed-9e1a-1935ca3e5591",
+      "reason": "structure"
+    },
+    {
+      "id": "hermes-d121e97c-da80-4642-bb57-00fe4570fb1f",
+      "reason": "structure"
+    },
+    {
+      "id": "hermes-e72c0a64-a06a-48e3-8bc5-7266fcaa62f3",
+      "reason": "stringified"
+    },
+    {
+      "id": "hermes-77172ed8-85a7-4d65-aa52-75d99b85755c",
+      "reason": "stringified"
+    },
+    {
+      "id": "glaive-78090",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "glaive-38418",
+      "reason": "ambiguous"
+    },
+    {
+      "id": "glaive-33229",
+      "reason": "ambiguous"
+    }
+  ],
+  "fixed": [
+    {
+      "id": "glaive-24945",
+      "was": [],
+      "now": [
+        {
+          "name": "generate_phone_number",
+          "arguments": {}
+        }
+      ],
+      "note": "the request gives every required argument (or the tool takes none), so the right answer is to call it"
+    },
+    {
+      "id": "glaive-82165",
+      "was": [],
+      "now": [
+        {
+          "name": "calculate_paint_required",
+          "arguments": {
+            "height": 8,
+            "length": 15,
+            "width": 12
+          }
+        }
+      ],
+      "note": "the request gives every required argument (or the tool takes none), so the right answer is to call it"
+    },
+    {
+      "id": "glaive-57054",
+      "was": [],
+      "now": [
+        {
+          "name": "generate_invoice_number",
+          "arguments": {}
+        }
+      ],
+      "note": "the request gives every required argument (or the tool takes none), so the right answer is to call it"
+    },
+    {
+      "id": "glaive-74508",
+      "was": [],
+      "now": [
+        {
+          "name": "generate_random_song",
+          "arguments": {}
+        }
+      ],
+      "note": "the request gives every required argument (or the tool takes none), so the right answer is to call it"
+    },
+    {
+      "id": "glaive-19992",
+      "was": [],
+      "now": [
+        {
+          "name": "search_recipes_by_ingredients",
+          "arguments": {
+            "ingredients": [
+              "tomatoes",
+              "onions",
+              "pasta"
+            ],
+            "max_prep_time": 30
+          }
+        }
+      ],
+      "note": "the request gives every required argument (or the tool takes none), so the right answer is to call it"
+    }
+  ]
+}
