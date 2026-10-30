@@ -1,0 +1,16 @@
+{
+  "system": "ft",
+  "n": 40,
+  "latency_s_p50": 2.130483000073582,
+  "latency_s_p95": 19.165699749952182,
+  "prompt_tokens_mean": 494.85,
+  "prompt_tps_mean": 1538.0010705157747,
+  "generation_tps_mean": 25.48974013277504,
+  "peak_memory_gb": 7.47,
+  "disk_gb": 6.81,
+  "electricity_usd_per_1k_calls_est": 0.0102,
+  "assumptions": {
+    "watts": 30.0,
+    "usd_per_kwh": 0.3
+  }
+}

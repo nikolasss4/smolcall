@@ -1,0 +1,16 @@
+{
+  "system": "base-4bit",
+  "n": 40,
+  "latency_s_p50": 0.9635179580654949,
+  "latency_s_p95": 5.138173207989894,
+  "prompt_tokens_mean": 494.85,
+  "prompt_tps_mean": 1873.6062319030082,
+  "generation_tps_mean": 56.47516422565588,
+  "peak_memory_gb": 3.19,
+  "disk_gb": 2.47,
+  "electricity_usd_per_1k_calls_est": 0.0035,
+  "assumptions": {
+    "watts": 30.0,
+    "usd_per_kwh": 0.3
+  }
+}
