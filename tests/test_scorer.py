@@ -56,7 +56,7 @@ def test_parse_output_empty_list_means_no_call() -> None:
 @pytest.mark.parametrize(
     "text",
     [
-        "I can't help with that.",
+        "{oops}",
         '[{"name": "x", "arguments": {"a": 1}',
         '[{"arguments": {}}]',
         "[1, 2]",
@@ -64,6 +64,15 @@ def test_parse_output_empty_list_means_no_call() -> None:
 )
 def test_parse_output_rejects_invalid(text: str) -> None:
     assert parse_output(text) is None
+
+
+def test_prose_without_json_counts_as_no_call() -> None:
+    assert parse_output("Which city do you mean?") == []
+
+
+def test_parse_output_accepts_one_object_per_line() -> None:
+    text = '{"name": "a", "arguments": {}}\n{"name": "b", "arguments": {"x": 1}}'
+    assert parse_output(text) == [Call("a", {}), Call("b", {"x": 1})]
 
 
 def test_parse_output_reads_thinking_free_tail() -> None:

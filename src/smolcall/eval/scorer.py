@@ -78,8 +78,15 @@ def _as_calls(obj: Any) -> list[Call] | None:
 
 def parse_output(text: str) -> list[Call] | None:
     """Return the calls in a model's text output, ``[]`` for "no tool", ``None`` if the
-    output isn't a recognizable list of calls."""
+    output isn't a recognizable list of calls.
+
+    A reply that contains no JSON at all ("Which city do you mean?") counts as calling
+    nothing, the same as a frontier model answering in text instead of using a tool.
+    Malformed JSON is ``None``.
+    """
     text = _THINK.sub("", text).strip()
+    if "{" not in text and "[" not in text:
+        return []
     candidates = [text]
     candidates += _FENCE.findall(text)
     for open_, close in (("[", "]"), ("{", "}")):
@@ -94,7 +101,29 @@ def parse_output(text: str) -> list[Call] | None:
         calls = _as_calls(obj)
         if calls is not None:
             return calls
-    return None
+    return _parse_object_sequence(text)
+
+
+def _parse_object_sequence(text: str) -> list[Call] | None:
+    """Calls written one JSON object after another (one per line, or comma-separated)
+    without an enclosing array. Small models do this often; we accept it rather than
+    count a readable answer as malformed."""
+    decoder = json.JSONDecoder()
+    calls, i = [], text.find("{")
+    if i < 0:
+        return None
+    while i < len(text):
+        try:
+            obj, i = decoder.raw_decode(text, i)
+        except json.JSONDecodeError:
+            return None
+        call = _as_call(obj)
+        if call is None:
+            return None
+        calls.append(call)
+        while i < len(text) and text[i] in " \t\r\n,":
+            i += 1
+    return calls
 
 
 # --- values ----------------------------------------------------------------------------
