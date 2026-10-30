@@ -45,8 +45,16 @@ def _tool(name: str, description: str, parameters: Any) -> dict[str, Any]:
 
 
 def _valid_calls(calls: list[Call], tools: list[dict[str, Any]]) -> bool:
+    """Calls must name an offered tool. Empty-string argument values are rejected too: in
+    glaive they are sloppy labels (``"album": ""``) and in hermes placeholders for the
+    output of an earlier call, and neither is something a model should learn to emit."""
     names = {t["name"] for t in tools}
-    return all(c.name in names and isinstance(c.arguments, dict) for c in calls)
+    return all(
+        c.name in names
+        and isinstance(c.arguments, dict)
+        and all(v != "" for v in c.arguments.values())
+        for c in calls
+    )
 
 
 # --- glaive-function-calling-v2 -------------------------------------------------------

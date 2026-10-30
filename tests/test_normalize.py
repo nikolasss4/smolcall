@@ -156,3 +156,11 @@ def test_bfcl_with_alternatives_and_irrelevance() -> None:
     irr = parse_bfcl({**q, "id": "irrelevance_0"}, None, "irrelevance")
     assert irr.calls == []
     assert irr.accept == []
+
+
+def test_glaive_rejects_empty_string_argument_values() -> None:
+    chat = (
+        'USER: rate?\n\n\nASSISTANT: <functioncall> {"name": "get_rate", '
+        '"arguments": \'{"base": ""}\'} <|endoftext|>\n'
+    )
+    assert parse_glaive({"system": GLAIVE_SYSTEM, "chat": chat}, 6) is None
