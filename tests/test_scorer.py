@@ -75,6 +75,17 @@ def test_parse_output_accepts_one_object_per_line() -> None:
     assert parse_output(text) == [Call("a", {}), Call("b", {"x": 1})]
 
 
+@pytest.mark.parametrize(
+    "text",
+    [
+        '[{"name": "a", "arguments": {}}], [{"name": "b", "arguments": {"x": 1}}]',
+        '[{"name": "a", "arguments": {}}]\n[{"name": "b", "arguments": {"x": 1}}]',
+    ],
+)
+def test_parse_output_accepts_one_array_per_call(text: str) -> None:
+    assert parse_output(text) == [Call("a", {}), Call("b", {"x": 1})]
+
+
 def test_parse_output_reads_thinking_free_tail() -> None:
     text = '<think>maybe get_time</think>\n[{"name": "get_time", "arguments": {}}]'
     assert parse_output(text) == [Call("get_time", {})]

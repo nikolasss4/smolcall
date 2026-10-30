@@ -105,22 +105,24 @@ def parse_output(text: str) -> list[Call] | None:
 
 
 def _parse_object_sequence(text: str) -> list[Call] | None:
-    """Calls written one JSON object after another (one per line, or comma-separated)
-    without an enclosing array. Small models do this often; we accept it rather than
-    count a readable answer as malformed."""
+    """Calls written one after another without one enclosing array: one JSON object per
+    line, or one array per call (``[{...}], [{...}]``). Small models do this often; we
+    accept it rather than count a readable answer as malformed."""
     decoder = json.JSONDecoder()
-    calls, i = [], text.find("{")
-    if i < 0:
+    starts = [i for i in (text.find("{"), text.find("[")) if i >= 0]
+    if not starts:
         return None
+    calls: list[Call] = []
+    i = min(starts)
     while i < len(text):
         try:
             obj, i = decoder.raw_decode(text, i)
         except json.JSONDecodeError:
             return None
-        call = _as_call(obj)
-        if call is None:
+        part = _as_calls(obj)
+        if part is None:
             return None
-        calls.append(call)
+        calls.extend(part)
         while i < len(text) and text[i] in " \t\r\n,":
             i += 1
     return calls
