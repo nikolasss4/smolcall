@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+dist/
+*.egg-info/
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# downloaded data and built splits are reproducible from data/manifest.json
+data/raw/
+data/processed/
+# weights are large; adapters are published separately
+models/
+runs/*/adapters/
+runs/*/fused*/
