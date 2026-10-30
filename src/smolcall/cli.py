@@ -31,3 +31,36 @@ def data_build() -> None:
     from smolcall.data.build import build
 
     typer.echo(json.dumps(build(), indent=2))
+
+
+@app.command("train")
+def train_cmd(config: str = typer.Argument(..., help="Path to configs/<name>.yaml")) -> None:
+    """LoRA fine-tune with mlx_lm (Apple Silicon only)."""
+    from pathlib import Path
+
+    from smolcall.train import train
+
+    typer.echo(f"run saved to {train(Path(config))}")
+
+
+@app.command("eval")
+def eval_cmd(
+    system: list[str] = typer.Option(
+        ..., "--system", "-s", help="e.g. base, ft-4bit, claude-haiku-5-5, replay:ft"
+    ),
+    split: list[str] = typer.Option(["test", "handchecked", "bfcl"], "--split"),
+    limit: int | None = typer.Option(None, help="Only the first N examples (not saved as metrics)"),
+) -> None:
+    """Run systems on splits with the shared scorer and print headline metrics."""
+    from smolcall.eval.runner import run
+
+    for sys_name in system:
+        for sp in split:
+            m = run(sys_name, sp, limit)
+            ci = m["accuracy"].get("ci95", [float("nan")] * 2)
+            typer.echo(
+                f"{m['system']:<22} {sp:<12} n={m['n']:<4} acc={m['accuracy']['value']:.3f} "
+                f"[{ci[0]:.3f}, {ci[1]:.3f}]  json={m['json_valid']['value']:.3f}  "
+                f"multi={(m['multi_accuracy']['value'] or 0):.3f}  "
+                f"false_call={(m['false_call_rate']['value'] or 0):.3f}"
+            )

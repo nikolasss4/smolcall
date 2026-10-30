@@ -1,0 +1,17 @@
+# 30 steps on 120 examples, to check the pipeline end to end in about a minute.
+model: ibm-granite/granite-4.1-3b
+seed: 0
+train_size: 120
+iters: 30
+batch_size: 2
+grad_accumulation_steps: 2
+num_layers: -1
+learning_rate: 1.0e-4
+lora_parameters: {rank: 16, dropout: 0.0, scale: 2.0}
+mask_prompt: true
+max_seq_length: 2048
+grad_checkpoint: true
+steps_per_report: 5
+steps_per_eval: 15
+val_batches: 5
+save_every: 30
