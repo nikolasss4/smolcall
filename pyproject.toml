@@ -53,6 +53,11 @@ packages = ["smolcall"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
+[tool.ruff.lint.per-file-ignores]
+# chart subtitles are long strings
+"scripts/charts.py" = ["E501"]
+"scripts/results_table.py" = ["E501"]
+
 [tool.ruff.lint.flake8-bugbear]
 extend-immutable-calls = ["typer.Option", "typer.Argument"]
 
