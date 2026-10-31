@@ -91,10 +91,6 @@ def train(config_path: Path) -> Path:
     data_dir = run_dir / "data"
     n_train = prepare_data(cfg.get("train_size"), cfg.get("seed", 0), data_dir)
     args = resolve(cfg, n_train, run_dir, data_dir)
-    (run_dir / "config.json").write_text(
-        json.dumps({"smolcall": cfg, "mlx_lm": args, "n_train": n_train}, indent=2) + "\n"
-    )
-
     mx.random.seed(args["seed"])
     np.random.seed(args["seed"])
     random.seed(args["seed"])
@@ -106,6 +102,9 @@ def train(config_path: Path) -> Path:
             "arguments": [lr, args["iters"] - cfg["cosine_warmup"], lr * 0.1],
             "warmup": cfg["cosine_warmup"],
         }
+    (run_dir / "config.json").write_text(
+        json.dumps({"smolcall": cfg, "mlx_lm": args, "n_train": n_train}, indent=2) + "\n"
+    )
     ns = _Namespace(args)
     start = time.time()
     # mlx_lm.lora.run() replaces any callback it is given with its own reporters, so this
