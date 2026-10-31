@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    # Scorers, data code and the frontier client are plain Python, and model outputs are
+    # committed, so CI needs neither MLX nor an API key.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --locked --extra frontier --extra charts
+      - name: Lint
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Type-check
+        run: uv run mypy
+      - name: Tests
+        run: uv run pytest -q
+      - name: Re-score committed predictions against committed metrics
+        run: uv run python scripts/rescore.py
