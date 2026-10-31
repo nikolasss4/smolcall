@@ -1,0 +1,77 @@
+{
+  "smolcall": {
+    "model": "ibm-granite/granite-4.1-3b",
+    "seed": 0,
+    "epochs": 1,
+    "train_size": 1500,
+    "batch_size": 2,
+    "grad_accumulation_steps": 2,
+    "num_layers": -1,
+    "learning_rate": 0.0001,
+    "cosine_warmup": 50,
+    "lora_parameters": {
+      "rank": 8,
+      "dropout": 0.0,
+      "scale": 2.0
+    },
+    "mask_prompt": true,
+    "max_seq_length": 2048,
+    "grad_checkpoint": true,
+    "steps_per_report": 20,
+    "steps_per_eval": 100,
+    "val_batches": 25,
+    "save_every": 200,
+    "name": "n1500-r8"
+  },
+  "mlx_lm": {
+    "model": "ibm-granite/granite-4.1-3b",
+    "train": true,
+    "fine_tune_type": "lora",
+    "optimizer": "adam",
+    "optimizer_config": {
+      "adam": {},
+      "adamw": {},
+      "muon": {},
+      "sgd": {},
+      "adafactor": {}
+    },
+    "data": "/Users/home/smolcall/runs/n1500-r8/data",
+    "seed": 0,
+    "num_layers": -1,
+    "batch_size": 2,
+    "iters": 750,
+    "val_batches": 25,
+    "learning_rate": 0.0001,
+    "steps_per_report": 20,
+    "steps_per_eval": 100,
+    "resume_adapter_file": null,
+    "adapter_path": "/Users/home/smolcall/runs/n1500-r8/adapters",
+    "save_every": 200,
+    "test": false,
+    "test_batches": 500,
+    "max_seq_length": 2048,
+    "config": null,
+    "grad_checkpoint": true,
+    "grad_accumulation_steps": 2,
+    "clear_cache_threshold": 0,
+    "lr_schedule": {
+      "name": "cosine_decay",
+      "arguments": [
+        0.0001,
+        700,
+        1e-05
+      ],
+      "warmup": 50
+    },
+    "lora_parameters": {
+      "rank": 8,
+      "dropout": 0.0,
+      "scale": 2.0
+    },
+    "mask_prompt": true,
+    "report_to": null,
+    "project_name": null,
+    "trust_remote_code": false
+  },
+  "n_train": 1500
+}

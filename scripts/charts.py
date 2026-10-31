@@ -153,7 +153,7 @@ def quantization() -> None:
             names, ys, yerr=err, fmt="none", ecolor=INK_2, elinewidth=1.2, capsize=4, zorder=3
         )
         for i, y in enumerate(ys):
-            ax.text(i, y + err[1][i] + 0.012, f"{y:.1%}", ha="center", fontsize=8.5, color=INK)
+            ax.text(i, y + err[1][i] + 0.02, f"{y:.1%}", ha="center", fontsize=8.5, color=INK)
         ax.set_facecolor(SURFACE)
         for side in ("top", "right"):
             ax.spines[side].set_visible(False)

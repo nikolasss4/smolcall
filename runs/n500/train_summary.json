@@ -1,0 +1,6 @@
+{
+  "n_train": 500,
+  "iters": 250,
+  "wall_time_s": 484.5,
+  "peak_memory_gb": 10.79
+}

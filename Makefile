@@ -35,7 +35,7 @@ bench:
 
 ablations:  ## Learning curve and LoRA rank runs, each evaluated on the test split
 	for c in configs/ablations/*.yaml; do uv run smolcall train $$c; done
-	for c in configs/ablations/*.yaml; do uv run smolcall eval -s lora-$$(basename $$c .yaml) --split test; done
+	for c in configs/ablations/*.yaml; do uv run smolcall eval -s lora-$$(basename $$c .yaml) --split test --split handchecked; done
 
 charts:
 	uv run python scripts/charts.py

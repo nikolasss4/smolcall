@@ -53,7 +53,15 @@
     "grad_checkpoint": true,
     "grad_accumulation_steps": 2,
     "clear_cache_threshold": 0,
-    "lr_schedule": null,
+    "lr_schedule": {
+      "name": "cosine_decay",
+      "arguments": [
+        0.0001,
+        3127,
+        1e-05
+      ],
+      "warmup": 50
+    },
     "lora_parameters": {
       "rank": 16,
       "dropout": 0.0,
@@ -64,5 +72,6 @@
     "project_name": null,
     "trust_remote_code": false
   },
-  "n_train": 6353
+  "n_train": 6353,
+  "note": "lr_schedule backfilled: it was applied in training but written after this file (fixed in train.py)"
 }
